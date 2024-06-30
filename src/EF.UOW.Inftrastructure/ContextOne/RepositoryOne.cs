@@ -17,5 +17,16 @@ public class RepositoryOne
     public void Add(EntityOne entityOne)
     {
         dbContextOne.T1.Add(entityOne);
+        dbContextOne.SaveChanges();
+    }
+
+    public void CauseException(EntityOne entityOne)
+    {
+        dbContextOne.T1.Add(entityOne);
+
+        EntityOne entityOneB = new(entityOne.Id);
+        dbContextOne.T1.Add(entityOneB);
+
+        dbContextOne.SaveChanges();
     }
 }
